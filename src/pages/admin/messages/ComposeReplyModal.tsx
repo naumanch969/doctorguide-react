@@ -5,7 +5,7 @@ import { replyMessage } from "../../../redux/action/message"
 import { RootState } from "../../../redux/store"
 import { Send } from "@mui/icons-material"
 import { Modal } from "@mui/material"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 interface Reply {

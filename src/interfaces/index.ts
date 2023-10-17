@@ -47,7 +47,7 @@ export interface User {
     verified: boolean,
     createdAt: string,    //Date
     updatedAt: string,
-    category: string,
+    category: string | Category,
     role: string,
     conversations: [{ conversationId: string, bookId: string }] | [],
     remainingMessages: number,

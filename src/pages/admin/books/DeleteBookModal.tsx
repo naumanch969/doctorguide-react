@@ -1,7 +1,6 @@
- 
+
 import { deleteBook } from '../../../redux/action/book'
-import { Modal, Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText } from '@mui/material'
-import React from 'react'
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from '@mui/material'
 import { useDispatch } from 'react-redux'
 
 const DeleteBookModal = ({ open, setOpen, bookId }: { open: boolean, setOpen: any, bookId: string }) => {
@@ -36,7 +35,7 @@ const DeleteBookModal = ({ open, setOpen, bookId }: { open: boolean, setOpen: an
                         All your documents in this chatbot will be deleted along with it. you will lose all the answers to your previous questions.
                     </DialogContentText>
                 </DialogContent>
-                <DialogActions style={{display:'flex',justifyContent:'center'}} className='p-0 flex justify-center w-full ' >
+                <DialogActions style={{ display: 'flex', justifyContent: 'center' }} className='p-0 flex justify-center w-full ' >
                     <button onClick={handleClose} className='bg-main-blue text-white md:px-16 md:py-3 sm:px-6 px-4 py-2  rounded-full shadow-lg ' >No, Close</button>
                     <button onClick={handleDelete} className='text-red border-[1px] border-red font-semibold md:px-16 md:py-3 sm:px-6 px-4 py-2  rounded-full shadow-lg ' >Yes, Delete</button>
                 </DialogActions>

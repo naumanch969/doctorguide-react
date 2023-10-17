@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { baseURL } from '../../constants'
-import { Book, Category, Message, Plan, Subcategory, Tool } from '../../interfaces';
+import { Book, Plan,  Tool } from '../../interfaces';
 
 axios.defaults.withCredentials = true;
 

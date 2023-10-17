@@ -1,13 +1,11 @@
- 
 
-import { Category, Subcategory } from '../interfaces';
+
 import { getBookCategory } from '../redux/action/category';
 import { getBookSubcategory } from '../redux/action/subcategory';
-import { RootState } from '../redux/store';
 import { useParams, useNavigate } from 'react-router-dom';
 import { useEffect } from 'react'
 import { BsStack } from 'react-icons/bs';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { PiCaretLeftBold } from 'react-icons/pi';
 
 const Navbar = ({ showRightbar, setShowRightbar }: { showRightbar: boolean, setShowRightbar: any }) => {
@@ -38,7 +36,7 @@ const Navbar = ({ showRightbar, setShowRightbar }: { showRightbar: boolean, setS
                     <PiCaretLeftBold style={{ fontSize: '28px' }} className='relative right-[1rem]' />
                 </button>
                 <h2 className={`hidden md:block lg:text-[2rem] md:text-[32px] sm:text-[22px] text-[20px] font-bold capitalize `} >
-                    {bookName?.replaceAll('%20', ' ')}
+                    {bookName?.replace(/%20/g, ' ')}
                 </h2>
 
                 <img src="/public/logo-mini.png" alt="Logo" className='w-[10rem] md:hidden ' />

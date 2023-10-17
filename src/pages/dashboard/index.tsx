@@ -1,6 +1,3 @@
- 
-
-import { useState } from 'react'
 import Topbar from "./ToolbarTopbar"
 import BookCard from "./BookCard"
 import { Book, Category, User } from "../../interfaces"
@@ -10,7 +7,6 @@ import { RootState } from "../../redux/store"
 import { useEffect } from "react"
 import { getBookCategory, getBooks, getUser } from "../../redux/api"
 import { getBooksReducer } from "../../redux/reducer/book"
-import SnackbarComponent from "../../utils/components/Snackbar"
 import { getBookCategoryReducer } from '../../redux/reducer/category'
 
 const Books = () => {
@@ -20,12 +16,11 @@ const Books = () => {
   const navigate = useNavigate()
   const { currentBookCategory }: { currentBookCategory: Category } = useSelector((state: RootState) => state.category)
   console.log('currentCategory',currentBookCategory)
-  const { loggedUser: user }: { loggedUser: User } = useSelector((state: RootState) => state.user)
+  const { loggedUser: user }: { loggedUser: User | null } = useSelector((state: RootState) => state.user)
+  console.log('user',user)
   const { books }: { books: Book[] } = useSelector((state: RootState) => state.book)
 
   /////////////////////////////////////////// STATES ///////////////////////////////////////////////
-  const [openSnackbar, setOpenSnackbar] = useState<boolean>(false)
-  const [snackbarText, setSnackbarText] = useState<string>('')
 
   /////////////////////////////////////////// USE EFFECTS ///////////////////////////////////////////////
   useEffect(() => {
@@ -33,10 +28,10 @@ const Books = () => {
       try {
 
         const { data: user }: { data: { name: string, category: Category } } = await getUser()
-        if (!user.name) return navigate('/auth/login')
+        if (!user?.name) return navigate('/auth/login')
         if (!Boolean(user?.category)) return navigate('/auth/category')
 
-        const { data: catResult }: { data: Category } = await getBookCategory(user.category._id)
+        const { data: catResult }: { data: Category } = await getBookCategory((user?.category as Category )._id)
         dispatch(getBookCategoryReducer(catResult))
 
         const { data } = await getBooks(`?page=1&size=20&cat=${user?.category}`)
@@ -54,7 +49,6 @@ const Books = () => {
   return (
     <div className="w-full overflow-x-hidden ">
 
-      <SnackbarComponent open={openSnackbar} setOpen={setOpenSnackbar} note={snackbarText} />
 
       <div className="flex flex-col gap-[1.5rem] md:px-[3rem] md:py-[1.5rem] p-4 bg-white ">
         <Topbar

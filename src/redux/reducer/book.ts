@@ -1,4 +1,4 @@
-import { Book, ConversationMessage } from "../../interfaces";
+import { Book } from "../../interfaces";
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 
@@ -55,7 +55,7 @@ const booksSlice = createSlice({
         updateBookReducer: (state, action: PayloadAction<Book>) => {
             state.books = state.books.map(book => book = book._id == action.payload._id ? action.payload : book);
         },
-        enableFileReducer: (state, action: PayloadAction<Book[]>) => {
+        enableFileReducer: (state) => {
             state.books = state.books.map(book=>book)
         },
         disableFileReducer: (state, action: PayloadAction<Book[]>) => {

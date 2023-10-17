@@ -13,7 +13,7 @@ import { Tool } from '../../interfaces';
 import { parseAndReturnLastObject } from '../../utils/functions';
 
 
-export const getTools = (query: string): AsyncAction => async (dispatch, getState) => {
+export const getTools = (query: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getTools(query)
@@ -23,7 +23,7 @@ export const getTools = (query: string): AsyncAction => async (dispatch, getStat
         dispatch(error(err.message))
     }
 }
-export const getTool = (toolId: string): AsyncAction => async (dispatch, getState) => {
+export const getTool = (toolId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getTool(toolId)
@@ -33,7 +33,7 @@ export const getTool = (toolId: string): AsyncAction => async (dispatch, getStat
         dispatch(error(err.message))
     }
 }
-export const queryTool = (toolId: string, inputs: { [key: string]: any }): AsyncAction => async (dispatch, getState) => {
+export const queryTool = (toolId: string, inputs: { [key: string]: any }): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.queryTool(toolId, inputs)
@@ -45,7 +45,7 @@ export const queryTool = (toolId: string, inputs: { [key: string]: any }): Async
         dispatch(error(err.message))
     }
 }
-export const createTool = (toolData: Tool): AsyncAction => async (dispatch, getState) => {
+export const createTool = (toolData: Tool): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.createTool(toolData)
@@ -55,7 +55,7 @@ export const createTool = (toolData: Tool): AsyncAction => async (dispatch, getS
         dispatch(error(err.message))
     }
 }
-export const updateTool = (toolId: string, toolData: Tool): AsyncAction => async (dispatch, getState) => {
+export const updateTool = (toolId: string, toolData: Tool): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.updateTool(toolId, toolData)
@@ -65,10 +65,10 @@ export const updateTool = (toolId: string, toolData: Tool): AsyncAction => async
         dispatch(error(err.message))
     }
 }
-export const deleteTool = (toolId: string): AsyncAction => async (dispatch, getState) => {
+export const deleteTool = (toolId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
-        const { data } = await api.deleteTool(toolId)
+        await api.deleteTool(toolId)
         dispatch(deleteToolReducer(toolId))
         dispatch(end())
     } catch (err: any) {

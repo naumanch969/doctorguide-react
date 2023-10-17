@@ -2,12 +2,14 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Category } from "../../interfaces";
 
 
- interface CategoriesState {
+interface CategoriesState {
     isFetching: boolean;
     error: null | Error;
     toolCategories: Category[];
     bookCategories: Category[];
     currentCategory: Category;
+    currentToolCategory: Category;
+    currentBookCategory: Category;
 }
 
 const initialState: CategoriesState = {
@@ -36,10 +38,10 @@ const categorysSlice = createSlice({
             state.error = action.payload;
         },
         getAllBookCategoriesReducer: (state, action: PayloadAction<Category[]>) => {
-            state.currentCategory = action.payload;
             state.bookCategories = action.payload;
         },
         getBookCategoryReducer: (state, action: PayloadAction<Category>) => {
+            state.currentCategory = action.payload;
             state.currentBookCategory = action.payload;
         },
         createBookCategoryReducer: (state, action: PayloadAction<Category>) => {

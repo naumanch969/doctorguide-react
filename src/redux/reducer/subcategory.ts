@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Category, Subcategory } from "../../interfaces";
+import { Subcategory } from "../../interfaces";
 
 
 // Define the type for your state

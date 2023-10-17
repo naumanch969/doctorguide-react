@@ -4,7 +4,7 @@ import { Menu } from '@mui/icons-material';
 import { IconButton } from '@mui/material';
 import { useState } from 'react'
 import { IoIosArrowForward } from 'react-icons/io';
-import { PiCaretLeftBold } from 'react-icons/pi';
+// import { PiCaretLeftBold } from 'react-icons/pi';
 // import ReactPlayer from 'react-player';
 
 const Navbar = ({ setShowSidebar }: any) => {

@@ -1,17 +1,12 @@
- 
-
-import DeleteBookModal from './DeleteBookModal'
 import { useState, useRef, useEffect } from 'react'
-import { Add, Delete, Edit } from '@mui/icons-material'
 import React from 'react'
-import { BsSearch } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 import { Modal } from '@mui/material'
 import { Book, Category, Subcategory } from '../../../interfaces'
 
 import { RootState } from '../../../redux/store'
 import { updateBook } from '../../../redux/action/book'
-import { uploadFile, uploadImage } from '../../../redux/api'
+import { uploadImage } from '../../../redux/api'
 import { getAllBookSubcategories, getBookSubcategories } from '../../../redux/action/subcategory'
 import { getAllBookCategories } from '../../../redux/action/category'
 
@@ -20,7 +15,6 @@ const UpdateBookModal = ({ open, setOpen, book }: { open: boolean, setOpen: any,
     //////////////////////////////////////////// VARIABLES ///////////////////////////////////////////////
     const dispatch = useDispatch()
     const mobileImageRef = useRef<HTMLInputElement>(null)
-    const fileRef = useRef<HTMLInputElement>(null)
     const webImageRef = useRef<HTMLInputElement>(null)
     const { isFetching }: { isFetching: boolean } = useSelector((state: RootState) => state.book)
     const { bookCategories }: { bookCategories: Category[] } = useSelector((state: RootState) => state.category)
@@ -40,8 +34,6 @@ const UpdateBookModal = ({ open, setOpen, book }: { open: boolean, setOpen: any,
 
     //////////////////////////////////////////// STATES ///////////////////////////////////////////////
     const [bookData, setBookData] = useState<Book>(book)
-    const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false)
-    const [selectedBook, setSelectedBook] = useState<Book>(initialState)
 
 
     //////////////////////////////////////////////// USE EFFECTS /////////////////////////////////////////////////////
@@ -97,8 +89,6 @@ const UpdateBookModal = ({ open, setOpen, book }: { open: boolean, setOpen: any,
     return (
         <Modal open={open} onClose={() => setOpen(false)} className='w-full flex justify-center items-center' >
             <div className='bg-white flex flex-col gap-[1.5rem] md:w-[70vw] sm:w-[80vw] w-[95vw] max-h-[80vh] overflow-y-scroll rounded-lg md:p-8 sm:p-6 p-4  ' >
-
-                <DeleteBookModal open={openDeleteModal} setOpen={setOpenDeleteModal} bookId={selectedBook._id} />
 
                 <div className="flex flex-col gap-[1rem] ">
                     {/* topbar */}

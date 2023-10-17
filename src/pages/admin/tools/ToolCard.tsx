@@ -2,7 +2,6 @@
 
 
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 
 interface Book {
     _id: string,
@@ -16,8 +15,6 @@ interface Book {
 }
 
 export default function ToolCard({ book }: { book: Book }) {
-
-    const navigate = useNavigate()
 
     return (
         <div className="bg-lighter-blue lg:w-[32%] sm:w-[48%] w-full h-[20rem] flex flex-col justify-between items-start p-[1rem] rounded-[1rem]  ">

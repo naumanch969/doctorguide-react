@@ -1,8 +1,7 @@
  
 import { deleteTool } from '../../../redux/action/tool'
-import { Modal, Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText } from '@mui/material'
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from '@mui/material'
+ import { useDispatch } from 'react-redux'
 
 const DeleteToolModal = ({ open, setOpen, toolId }: { open: boolean, setOpen: any, toolId: string }) => {
 

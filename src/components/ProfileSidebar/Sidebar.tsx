@@ -7,7 +7,7 @@ import SideLinks from './SideLinks'
 import { IoLogOut } from 'react-icons/io5'
 import { PiCaretLeftBold } from 'react-icons/pi'
 import { Logout, Person, QuestionMark, Rocket } from '@mui/icons-material'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/action/auth'
 

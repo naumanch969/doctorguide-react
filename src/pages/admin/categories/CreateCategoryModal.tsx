@@ -4,7 +4,7 @@ import { createBookCategory, createToolCategory } from "../../../redux/api"
 import SnackbarComponent from "../../../utils/components/Snackbar"
 import { createBookCategoryReducer, createToolCategoryReducer } from "../../../redux/reducer/category"
 import { Modal } from "@mui/material"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { BsStack } from "react-icons/bs"
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'

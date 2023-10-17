@@ -1,19 +1,14 @@
-import { updateUser } from '../../redux/action/user'
-import { Modal, Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText } from '@mui/material'
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from '@mui/material'
 
 const DeleteModal = ({ open, setOpen }: any) => {
 
     ////////////////////////////////////// VARIABLES ///////////////////////////////////////
-    const dispatch = useDispatch()
-
+ 
     ////////////////////////////////////// FUNCTIONS ///////////////////////////////////////
     const handleClose = () => {
         setOpen(false)
     }
     const handleDelete = () => {
-        // dispatch<any>(deleteUser())
         setOpen(false)
     }
 

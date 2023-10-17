@@ -12,7 +12,7 @@ import { AsyncAction } from '../store'
 // import { parseAndReturnLastObject } from '../../utils/functions';
 
 
-export const getBookDetailsAndStartConversation = (bookId: string): AsyncAction => async (dispatch, getState) => {
+export const getBookDetailsAndStartConversation = (bookId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getBookDetailsAndStartConversation(bookId)
@@ -22,7 +22,12 @@ export const getBookDetailsAndStartConversation = (bookId: string): AsyncAction 
         dispatch(error(err.message))
     }
 }
-function extractLastObject(jsonString: string): { text: string, sourceDocuments: Array<[]>, questions: string[] | [] } | null {
+
+
+
+
+interface SourceDocument { pageContent: string, metadata: { fileId: string } };
+function extractLastObject(jsonString: string): { text: string, sourceDocuments: SourceDocument[], questions: string[] | [] } | null {
     // Split the string into individual JSON objects
     const jsonObjects = jsonString.trim().split('}{');
 
@@ -52,25 +57,25 @@ function extractLastObject(jsonString: string): { text: string, sourceDocuments:
 
     return lastObject;
 }
-
-
-
-
-export const queryBook = (query: { query: string, conversationId: string }, setSources: any): AsyncAction => async (dispatch, getState) => {
+export const queryBook = (query: { query: string, conversationId: string }, setSources: any): AsyncAction => async (dispatch) => {
     try {
-        dispatch(start())
-        dispatch(queryBookReducer({ role: 'HUMAN', text: query.query, sourceDocuments: [], questions: [] }))
-        let { data } = await api.queryBook(query)
-        const response: { text: string, sourceDocuments: Array<[]>, questions: string[] | [] } | null = extractLastObject(data)
-        setSources(response?.sourceDocuments)
-        dispatch(queryBookReducer({ ...response, role: 'AI' }))
-        dispatch(end())
+        dispatch(start());
+
+        dispatch(queryBookReducer({ role: 'HUMAN', text: query.query, sourceDocuments: [], questions: [] }));
+        let { data } = await api.queryBook(query);
+        
+        const response: { text: string, sourceDocuments: SourceDocument[] | [], questions: string[] | [] } | null = extractLastObject(data);
+        setSources(response?.sourceDocuments);
+        response && dispatch(queryBookReducer({ ...response, role: 'AI' }));
+
+        dispatch(end());
     } catch (err: any) {
-        console.log('error', err)
-        dispatch(error(err.message))
+        console.log('error', err);
+        dispatch(error(err.message));
     }
 }
-export const getConversationMessages = (conversationId: string): AsyncAction => async (dispatch, getState) => {
+
+export const getConversationMessages = (conversationId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getConversationMessages(conversationId)
@@ -80,7 +85,7 @@ export const getConversationMessages = (conversationId: string): AsyncAction => 
         dispatch(error(err.message))
     }
 }
-export const getUserConversationHistory = (): AsyncAction => async (dispatch, getState) => {
+export const getUserConversationHistory = (): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getUserConversationHistory()
@@ -90,7 +95,7 @@ export const getUserConversationHistory = (): AsyncAction => async (dispatch, ge
         dispatch(error(err.message))
     }
 }
-export const getConversationIds = (bookId: string): AsyncAction => async (dispatch, getState) => {
+export const getConversationIds = (bookId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getConversationIds(bookId)

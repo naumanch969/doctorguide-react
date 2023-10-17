@@ -7,7 +7,7 @@ import { getAllBookCategories, getAllToolCategories } from '../../../redux/actio
 import { getAllBookSubcategories, getAllToolSubcategories, getBookSubcategories, getToolSubcategories } from '../../../redux/action/subcategory'
 import { RootState } from '../../../redux/store'
 import { Add, Delete, Edit } from '@mui/icons-material'
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import Loader from '../../../utils/components/Loader'
 

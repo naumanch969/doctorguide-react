@@ -1,6 +1,6 @@
- 
+
 import { useState } from "react";
-import { Chatbot } from '../pages'
+import Chatbot from '../pages/Chatbot'
 import { ChatbotNavbar as Navbar } from '../components'
 
 const ChatbotLayout = () => {

@@ -17,7 +17,7 @@ import {
     deleteToolSubcategoryReducer,
 } from '../../redux/reducer/subcategory'
 
-export const getAllBookSubcategories = (): AsyncAction => async (dispatch, getState) => {
+export const getAllBookSubcategories = (): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         let { data } = await api.getAllBookSubcategories()
@@ -27,7 +27,7 @@ export const getAllBookSubcategories = (): AsyncAction => async (dispatch, getSt
         dispatch(error(err.message))
     }
 }
-export const getBookSubcategories = (categoryId: string): AsyncAction => async (dispatch, getState) => {
+export const getBookSubcategories = (categoryId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         let { data } = await api.getBookSubcategories(categoryId)
@@ -37,7 +37,7 @@ export const getBookSubcategories = (categoryId: string): AsyncAction => async (
         dispatch(error(err.message))
     }
 }
-export const getBookSubcategory = (categoryId: string, subcategoryId: string): AsyncAction => async (dispatch, getState) => {
+export const getBookSubcategory = (categoryId: string, subcategoryId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         let { data } = await api.getBookSubcategory(categoryId, subcategoryId)
@@ -47,7 +47,7 @@ export const getBookSubcategory = (categoryId: string, subcategoryId: string): A
         dispatch(error(err.message))
     }
 }
-export const createBookSubcategory = (categoryId: string, subcategoryName: string): AsyncAction => async (dispatch, getState) => {
+export const createBookSubcategory = (categoryId: string, subcategoryName: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.createBookSubcategory(categoryId, subcategoryName)
@@ -57,20 +57,20 @@ export const createBookSubcategory = (categoryId: string, subcategoryName: strin
         dispatch(error(err.message))
     }
 }
-export const updateBookSubcategory = (categoryId: string, subcategoryId: string, subcategoryName: string): AsyncAction => async (dispatch, getState) => {
+export const updateBookSubcategory = (categoryId: string, subcategoryId: string, subcategoryName: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
-        const { data } = await api.updateBookSubcategory(categoryId, subcategoryId, subcategoryName)
+        const {data} = await api.updateBookSubcategory(categoryId, subcategoryId, subcategoryName)
         dispatch(updateBookSubcategoryReducer(data))
         dispatch(end())
     } catch (err: any) {
         dispatch(error(err.message))
     }
 }
-export const deleteBookSubcategory = (categoryId: string, subcategoryId: string): AsyncAction => async (dispatch, getState) => {
+export const deleteBookSubcategory = (categoryId: string, subcategoryId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
-        const { data } = await api.deleteBookSubcategory(categoryId, subcategoryId)
+         await api.deleteBookSubcategory(categoryId, subcategoryId)
         dispatch(deleteBookSubcategoryReducer(subcategoryId))
         dispatch(end())
     } catch (err: any) {
@@ -84,7 +84,7 @@ export const deleteBookSubcategory = (categoryId: string, subcategoryId: string)
 
 
 
-export const getAllToolSubcategories = (): AsyncAction => async (dispatch, getState) => {
+export const getAllToolSubcategories = (): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         let { data } = await api.getAllToolSubcategories()
@@ -94,7 +94,7 @@ export const getAllToolSubcategories = (): AsyncAction => async (dispatch, getSt
         dispatch(error(err.message))
     }
 }
-export const getToolSubcategories = (categoryId: string): AsyncAction => async (dispatch, getState) => {
+export const getToolSubcategories = (categoryId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         let { data } = await api.getToolSubcategories(categoryId)
@@ -104,7 +104,7 @@ export const getToolSubcategories = (categoryId: string): AsyncAction => async (
         dispatch(error(err.message))
     }
 }
-export const createToolSubcategory = (categoryId: string, subcategoryData: string): AsyncAction => async (dispatch, getState) => {
+export const createToolSubcategory = (categoryId: string, subcategoryData: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.createToolSubcategory(categoryId, subcategoryData)
@@ -114,7 +114,7 @@ export const createToolSubcategory = (categoryId: string, subcategoryData: strin
         dispatch(error(err.message))
     }
 }
-export const getToolSubcategory = (categoryId: string, subcategoryId: string): AsyncAction => async (dispatch, getState) => {
+export const getToolSubcategory = (categoryId: string, subcategoryId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getToolSubcategory(categoryId, subcategoryId)
@@ -124,7 +124,7 @@ export const getToolSubcategory = (categoryId: string, subcategoryId: string): A
         dispatch(error(err.message))
     }
 }
-export const updateToolSubcategory = (categoryId: string, subcategoryId: string, subcategoryData: string): AsyncAction => async (dispatch, getState) => {
+export const updateToolSubcategory = (categoryId: string, subcategoryId: string, subcategoryData: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.updateToolSubcategory(categoryId, subcategoryId, subcategoryData)
@@ -135,10 +135,10 @@ export const updateToolSubcategory = (categoryId: string, subcategoryId: string,
         dispatch(error(err.message))
     }
 }
-export const deleteToolSubcategory = (categoryId: string, subcategoryId: string): AsyncAction => async (dispatch, getState) => {
+export const deleteToolSubcategory = (categoryId: string, subcategoryId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
-        const { data } = await api.deleteToolSubcategory(categoryId, subcategoryId)
+        await api.deleteToolSubcategory(categoryId, subcategoryId)
         dispatch(deleteToolSubcategoryReducer(subcategoryId))
         dispatch(end())
     } catch (err: any) {

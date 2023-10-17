@@ -36,7 +36,7 @@ const messagesSlice = createSlice({
         },
 
 
-        sendMessageReducer: (state, action: PayloadAction<Message[]>) => {
+        sendMessageReducer: () => {
         },
         getMessagesReducer: (state, action: PayloadAction<Message[]>) => {
             state.messages = action.payload
@@ -44,13 +44,13 @@ const messagesSlice = createSlice({
         getMessageReducer: (state, action: PayloadAction<Message>) => {
             state.currentMessage = action.payload
         },
-        replyMessageReducer: (state, action: PayloadAction<Message[]>) => {
+        replyMessageReducer: () => {
         },
-        sendBulkEmailsReducer: (state, action: PayloadAction<Message[]>) => {
+        sendBulkEmailsReducer: () => {
         },
-        sendEmailsToEveryoneReducer: (state, action: PayloadAction<Message[]>) => {
+        sendEmailsToEveryoneReducer: () => {
         },
-        sendEmailsToSubscribersReducer: (state, action: PayloadAction<Message[]>) => {
+        sendEmailsToSubscribersReducer: () => {
         },
 
 

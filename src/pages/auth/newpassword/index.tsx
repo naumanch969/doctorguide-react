@@ -40,7 +40,7 @@ export default function Login() {
         id,
         token,
       })
-      .then((res: any) => {
+      .then((_res: any) => {
         setError("");
         setValidToken(true);
         setLoader(false);

@@ -1,10 +1,10 @@
 export { default as AdminSidebar } from './AdminSidebar'
-export { default as DashboardSidebar } from './DashboardSidebar/Sidebar'
+export { default as DashboardSidebar } from './DashboardSidebar/Sidebar.jsx'
 export { default as ProfileSidebar } from './ProfileSidebar/Sidebar'
 export { default as AiToolSidebar } from './AiToolSidebar/Sidebar'
 
 export { default as ChatbotRightbar } from './ChatbotRightbar'
-export { default as ChatbotNavbar } from './ChatbotNavbar.tsx'
+export { default as ChatbotNavbar } from './ChatbotNavbar.jsx'
 
 export { default as DashboardNavbar } from './DashboardNavbar.tsx'
 

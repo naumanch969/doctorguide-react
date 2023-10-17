@@ -1,11 +1,11 @@
  
 
-import { Message, Plan } from "../../../interfaces"
+import {  Plan } from "../../../interfaces"
 import { createPlan } from "../../../redux/action/plan"
 import { RootState } from "../../../redux/store"
-import { Clear, Send } from "@mui/icons-material"
+import { Clear } from "@mui/icons-material"
 import { Modal } from "@mui/material"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 

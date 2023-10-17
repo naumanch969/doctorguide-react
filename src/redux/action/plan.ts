@@ -5,7 +5,7 @@ import { start, end, error, createPlanReducer, updatePlanReducer, getPlansReduce
 import { AsyncAction } from '../store'
 import { baseURL } from '../../constants';
 
-export const createPlan = (planData: Plan): AsyncAction => async (dispatch, getState) => {
+export const createPlan = (planData: Plan): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.createPlan(planData)
@@ -15,7 +15,7 @@ export const createPlan = (planData: Plan): AsyncAction => async (dispatch, getS
         dispatch(error(err.message))
     }
 }
-export const updatePlan = (planId: string, planData: Plan): AsyncAction => async (dispatch, getState) => {
+export const updatePlan = (planId: string, planData: Plan): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.updatePlan(planId, planData)
@@ -25,7 +25,7 @@ export const updatePlan = (planId: string, planData: Plan): AsyncAction => async
         dispatch(error(err.message))
     }
 }
-export const getPlans = (): AsyncAction => async (dispatch, getState) => {
+export const getPlans = (): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getPlans()
@@ -35,7 +35,7 @@ export const getPlans = (): AsyncAction => async (dispatch, getState) => {
         dispatch(error(err.message))
     }
 }
-export const getPlan = (planId: string): AsyncAction => async (dispatch, getState) => {
+export const getPlan = (planId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getPlan(planId)
@@ -45,10 +45,10 @@ export const getPlan = (planId: string): AsyncAction => async (dispatch, getStat
         dispatch(error(err.message))
     }
 }
-export const deletePlan = (planId: string): AsyncAction => async (dispatch, getState) => {
+export const deletePlan = (planId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
-        const { data } = await api.deletePlan(planId)
+        await api.deletePlan(planId)
         dispatch(deletePlanReducer(planId))
         dispatch(end())
     } catch (err: any) {
@@ -56,7 +56,7 @@ export const deletePlan = (planId: string): AsyncAction => async (dispatch, getS
     }
 }
 
-export const checkoutSubscription = (inputData: { planName: string, billing: string }, navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch, getState) => {
+export const checkoutSubscription = (inputData: { planName: string, billing: string }, navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.checkoutSubscription(inputData)

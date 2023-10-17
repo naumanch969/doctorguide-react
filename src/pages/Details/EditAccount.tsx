@@ -3,10 +3,8 @@
 import { Edit, Image as ImageIcon } from '@mui/icons-material'
 import { Modal } from '@mui/material'
 import React, { useEffect, useRef, useState } from 'react'
-import { PiCameraLight } from 'react-icons/pi'
-import { person1 } from '../../../../public'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateUser } from '../..//redux/action/user'
+import { updateUser } from '../../redux/action/user'
 import { RootState } from '../..//redux/store'
 import { User } from '../..//interfaces'
 import { uploadImage } from '../..//redux/api'
@@ -17,18 +15,15 @@ const EditAccount = ({ open, setOpen, setOpenDeleteModal }: any) => {
 
     //////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////////
     const dispatch = useDispatch()
-    const imageRef = useRef(null)
+    const imageRef = useRef<HTMLInputElement | null>(null);
     const { loggedUser: user, isFetching }: { loggedUser: User | null, isFetching: boolean } = useSelector((state: RootState) => state.user)
 
     //////////////////////////////////////////////// STATES //////////////////////////////////////////////////////
-    const [userData, setUserData] = useState<UserData>({ name: user.name || '', imageUrl: user.imageUrl || '', newPassword: '', oldPassword: '' })
+    const [userData, setUserData] = useState<UserData>({ name: user?.name || '', imageUrl: user?.imageUrl || '', newPassword: '', oldPassword: '' })
 
     //////////////////////////////////////////////// USE EFFECTS //////////////////////////////////////////////////////
     useEffect(() => {
-        console.log('userData', userData)
-    }, [userData])
-    useEffect(() => {
-        setUserData({ name: user.name || '', imageUrl: user.imageUrl || '', newPassword: '', oldPassword: '' })
+        setUserData({ name: user?.name || '', imageUrl: user?.imageUrl || '', newPassword: '', oldPassword: '' })
     }, [user])
 
     //////////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////////////////
@@ -78,7 +73,7 @@ const EditAccount = ({ open, setOpen, setOpenDeleteModal }: any) => {
                                 ref={imageRef}
                             />
                             <button className="flex flex-col justify-center items-center text-textGray " >
-                                Drag and drop your files, or <span onClick={() => { imageRef?.current?.click() }} className='underline ' >Browse</span>
+                                 <span onClick={() => { imageRef?.current?.click() }} className='underline ' >Browse</span>
                             </button>
                         </div>
                         <div className="w-[30%] h-full flex justify-center items-center ">

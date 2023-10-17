@@ -1,10 +1,9 @@
  
-import { PiCaretRightBold } from 'react-icons/pi'
 import { BsSearch } from 'react-icons/bs'
 import { searchBook } from '../../redux/action/book'
 import { useDispatch } from 'react-redux'
 
-const Topbar = ({ title, subTitle }: { title: string, subTitle: string }) => {
+const Topbar = ({ title }: { title: string, subTitle: string }) => {
 
     const dispatch = useDispatch()
 
@@ -12,9 +11,7 @@ const Topbar = ({ title, subTitle }: { title: string, subTitle: string }) => {
         <div className='flex  flex-col gap-[8px]  ' >
 
             <h2 className='text-[36px] text-main-blue font-bold flex items-center gap-[6px] capitalize ' >
-                <span>{title?.replaceAll('%20', ' ')} </span>
-                {subTitle && <PiCaretRightBold style={{ fontWeight: '800', fontSize: '32px' }} />}
-                <span>{subTitle?.replaceAll('%20', ' ')}</span>
+                <span>{title} </span>
             </h2>
 
             <div className='flex justify-between items-center gap-[1rem] ' >

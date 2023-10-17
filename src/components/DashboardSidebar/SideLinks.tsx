@@ -1,7 +1,6 @@
  ;
 // import { Link } from 'react-router-dom'
 import { Link } from 'react-router-dom'
-import { useNavigate } from 'react-router-dom'
 import { useState } from "react";
 import { IoIosArrowForward } from "react-icons/io";
 interface SideLinksProps {
@@ -10,13 +9,11 @@ interface SideLinksProps {
   subTools?: { name: string, id: string }[];
   categoryId?: string;
   active?: boolean;
-  onClick?: any;
 }
 
 
-export default function SideLinks({ title, subcategories, active, subTools, categoryId, onClick }: SideLinksProps) {
+export default function SideLinks({ title, subcategories, active, subTools, categoryId }: SideLinksProps) {
   //////////////////////////////////////////////// STATES ////////////////////////////////////////////////////
-  const navigate = useNavigate()
 
   //////////////////////////////////////////////// STATES ////////////////////////////////////////////////////
   const [openMenu, setOpenMenu] = useState(active);

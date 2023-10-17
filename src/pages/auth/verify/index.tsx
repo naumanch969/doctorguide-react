@@ -1,5 +1,3 @@
- ;
-
 import AuthPage from "../../../components/AuthPage";
 import { useState, useEffect } from "react";
 import OTPInput from "react-otp-input";
@@ -16,7 +14,6 @@ export default function Login() {
 
   //////////////////////////////////////////////// VARIABLES ////////////////////////////////////////////////////
   const navigate = useNavigate();
-  const dispatch = useDispatch()
 
   //////////////////////////////////////////////// STATES ////////////////////////////////////////////////////
   const [otp, setOtp] = useState<string>("");
@@ -29,7 +26,7 @@ export default function Login() {
   //////////////////////////////////////////////// USE EFFECTS ////////////////////////////////////////////////////
   useEffect(() => {
     async function startInterval() {
-      const user = await routeHandler(router);
+      const user = await routeHandler(navigate);
 
       if (user) setLoader(false);
       const interval = setInterval(() => {

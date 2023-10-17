@@ -1,7 +1,7 @@
  ;
 
 import { HiOutlineEye, HiOutlineEyeOff } from "react-icons/hi";
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import AuthPage from "../../../components/AuthPage";
 
 import { useNavigate } from 'react-router-dom'
@@ -9,10 +9,7 @@ import { useNavigate } from 'react-router-dom'
 import passwordSchema from "../../../utils/passwordValidator";
 import { Input, Submit, HyperLink, Google as GoogleSignIn, FormHeading, Error } from "../../../components";
 import { register } from "../../../redux/api";
-import { useDispatch, useSelector } from "react-redux";
 import SnackbarComponent from "../../../utils/components/Snackbar";
-import { User } from "../../../interfaces";
-import { RootState } from "../../../redux/store";
 
 interface ErrorType {
   message?: string;
@@ -22,7 +19,6 @@ interface ErrorType {
 export default function Login() {
 
   /////////////////////////////////////////////////// VARIABLES ////////////////////////////////////////////////////////
-  const dispatch = useDispatch()
   const navigate = useNavigate();
   /////////////////////////////////////////////////// STATES ////////////////////////////////////////////////////////
   const [showPassword, setShowPassword] = useState(false);

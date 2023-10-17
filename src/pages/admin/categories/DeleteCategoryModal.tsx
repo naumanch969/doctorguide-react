@@ -1,6 +1,5 @@
 import { deleteBookCategory, deleteToolCategory } from '../../../redux/action/category'
-import { Modal, Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText } from '@mui/material'
-import React from 'react'
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from '@mui/material'
 import { useDispatch } from 'react-redux'
 
 const DeleteCategoryModal = ({ open, setOpen, categoryId, type }: { open: boolean, setOpen: any, categoryId: string, type: string }) => {

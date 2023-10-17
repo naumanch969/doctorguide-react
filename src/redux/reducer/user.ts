@@ -1,4 +1,4 @@
- 
+
 
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { User } from "../../interfaces";
@@ -11,12 +11,14 @@ interface UserState {
     users: User[];
     loggedUser: User | null;
 }
+const profileCookie = Cookie.get('askexpert_profile');
+
 
 const initialState: UserState = {
     isFetching: false,
     error: null,
     users: [],
-    loggedUser: Cookie.get('askexpert_profile') ? JSON.parse(Cookie.get('askexpert_profile')) : null
+    loggedUser: profileCookie ? JSON.parse(profileCookie) : null
 };
 
 
@@ -41,7 +43,7 @@ const usersSlice = createSlice({
 
 
         getUserReducer: (state, action: PayloadAction<User>) => { state.loggedUser = action.payload },
-        setUserCategoryReducer: (state, action: PayloadAction<string>) => { },
+        setUserCategoryReducer: () => { },
         updateUserReducer: (state, action: PayloadAction<User[]>) => { state.users = action.payload },
         createCheckoutSubscriptionReducer: (state, action: PayloadAction<User[]>) => { state.users = action.payload },
 

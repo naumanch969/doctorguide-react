@@ -1,11 +1,10 @@
  
 
-import { Message } from "../../../interfaces"
-import { replyMessage, sendBulkEmails, sendEmailsToEveryone, sendEmailsToSubscribers } from "../../../redux/action/message"
+import { sendBulkEmails, sendEmailsToEveryone, sendEmailsToSubscribers } from "../../../redux/action/message"
 import { RootState } from "../../../redux/store"
 import { Clear, Send } from "@mui/icons-material"
 import { Modal } from "@mui/material"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 interface Reply {

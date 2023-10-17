@@ -1,15 +1,9 @@
  
 
-import { useState } from 'react'
-import { Search } from '@mui/icons-material'
-import { PiCaretRightBold, PiCaretRightLight } from 'react-icons/pi'
-import { FormControl, IconButton, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select } from '@mui/material'
-import { BsSearch } from 'react-icons/bs'
+import { PiCaretRightBold } from 'react-icons/pi'
 
 const Topbar = () => {
 
-    const [searchValue, setSearchValue] = useState<any>("")
-    const [filterValue, setFilterValue] = useState<any>("")
 
     return (
         <div className='flex flex-col gap-[8px]  ' >
@@ -21,7 +15,7 @@ const Topbar = () => {
             </h2>
 
             <div className='flex justify-between items-center ' >
-                <div className="w-[45%] relative">
+                {/* <div className="w-[45%] relative">
                     <input
                         type="text"
                         placeholder="Search"
@@ -30,19 +24,8 @@ const Topbar = () => {
                     <div className="absolute right-[1.3rem] top-1/2 -translate-y-1/2 hover:bg-[#E2E6F2] p-3 rounded-full cursor-pointer">
                         <BsSearch className="" />
                     </div>
-                </div>
-                <Select
-                    onChange={(e) => setFilterValue(e.target.value)}
-                    type="text"
-                    size="small"
-                    label='Sub-Category'
-                    fullWidth
-                    className='outline-gray-500 bg-lighter-blue flex justify-between border-[1px] border-gray-500 rounded-full w-[45%] h-[50px] px-[1rem] '
-                >
-                    <MenuItem value="filter1">Filter 1</MenuItem>
-                    <MenuItem value="filter2">Filter 2</MenuItem>
-                    <MenuItem value="filter3">Filter 3</MenuItem>
-                </Select>
+                </div> */}
+                 
             </div>
 
         </div>

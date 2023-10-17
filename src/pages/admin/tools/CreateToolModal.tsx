@@ -5,14 +5,12 @@ import { getAllToolCategories } from '../../../redux/action/category'
 import { getAllToolSubcategories, getToolSubcategories } from '../../../redux/action/subcategory'
 import { uploadImage } from '../../../redux/api'
 import { RootState } from '../../../redux/store'
-import { Add, Delete, DeleteOutlined, Edit } from '@mui/icons-material'
+import { DeleteOutlined } from '@mui/icons-material'
 import { Modal, Switch } from '@mui/material'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { BsSearch } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
 import { createTool } from '../../../redux/action/tool'
-import DeleteBookModal from '../books/DeleteBookModal'
 
 const CreateToolModal = ({ open, setOpen }: { open: boolean, setOpen: any }) => {
 

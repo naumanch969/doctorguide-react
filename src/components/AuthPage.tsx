@@ -12,7 +12,7 @@ export default function AuthPage({ children, title, onSubmit, className, customP
       navigate(customPage);
       return;
     }
-    router.back();
+    navigate(-1);
   };
   return (
     <div className="md:py-20 w-screen min-h-screen grad-background font-poppins overflow-x-hidden">

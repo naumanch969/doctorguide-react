@@ -1,7 +1,6 @@
-import { Modal, Dialog, DialogTitle, DialogContent, DialogActions, Button, DialogContentText } from '@mui/material'
-import React from 'react'
+import { Dialog, DialogTitle, DialogContent, DialogActions, DialogContentText } from '@mui/material'
 
-const DeleteMessageModal = ({ open, setOpen, message }: any) => {
+const DeleteMessageModal = ({ open, setOpen }: any) => {
 
     ////////////////////////////////////// VARIABLES ///////////////////////////////////////
 

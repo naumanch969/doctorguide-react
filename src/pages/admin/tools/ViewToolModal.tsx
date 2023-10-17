@@ -7,7 +7,7 @@ import { RootState } from "../../../redux/store"
 import Loader from "../../../utils/components/Loader"
 import { Modal } from "@mui/material"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 const ViewToolModal = ({ open, setOpen, tool }: { open: boolean, setOpen: any, tool: Tool }) => {
@@ -16,7 +16,6 @@ const ViewToolModal = ({ open, setOpen, tool }: { open: boolean, setOpen: any, t
     const { currentCategory, isFetching: categoriesFetching }: { currentCategory: Category, isFetching: boolean } = useSelector((state: RootState) => state.category)
     const { currentSubcategory, isFetching: subcategoriesFetching }: { currentSubcategory: Subcategory, isFetching: boolean } = useSelector((state: RootState) => state.subcategory)
     const dispatch = useDispatch()
-    console.log('tool', tool)
 
     ////////////////////////////////////////////////////// STATES //////////////////////////////////////////////////
 

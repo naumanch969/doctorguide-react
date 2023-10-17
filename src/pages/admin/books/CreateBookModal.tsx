@@ -1,12 +1,11 @@
- 
 
-import DeleteBookModal from './DeleteBookModal'
+
 import { useState, useRef, useEffect } from 'react'
-import { Add, Delete, Edit } from '@mui/icons-material'
+import { Add } from '@mui/icons-material'
 import React from 'react'
 import { BsSearch } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
-import { Modal, useForkRef } from '@mui/material'
+import { Modal } from '@mui/material'
 import { Book, Category, Subcategory } from '../../../interfaces'
 
 import { RootState } from '../../../redux/store'
@@ -38,12 +37,9 @@ const CreateBookModal = ({ open, setOpen }: { open: boolean, setOpen: any }) => 
         suggestedQuestions: []
     }
 
-    const files = ['Document 1', 'Document 1', 'Document 1', 'Document 1', 'Document 1', 'Document 1', 'Document 1', 'Document 1',]
 
     //////////////////////////////////////////// STATES ///////////////////////////////////////////////
     const [bookData, setBookData] = useState<Book>(initialState)
-    const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false)
-    const [selectedBook, setSelectedBook] = useState<Book>(initialState)
 
 
     //////////////////////////////////////////////// USE EFFECTS /////////////////////////////////////////////////////
@@ -64,7 +60,7 @@ const CreateBookModal = ({ open, setOpen }: { open: boolean, setOpen: any }) => 
 
     //////////////////////////////////////////////// FUNCTIONS /////////////////////////////////////////////////////
     const handleSubmit = () => {
-        let { name, category, subcategory, webImage, mobileImage, files, indexName, initialMessage, suggestedQuestions, } = bookData
+        let { name, category, subcategory, webImage, mobileImage, files, } = bookData
         if (
             !name ||
             !category ||
@@ -89,8 +85,8 @@ const CreateBookModal = ({ open, setOpen }: { open: boolean, setOpen: any }) => 
                 const formData = new FormData();
                 formData.append('image', selectedFile);
                 try {
-                    const { data: { uri } }: { data: { uri: string } } = await uploadImage(formData)
-                    setBookData({ ...bookData, [type]: uri })
+                    const { data }: { data: { uri: string } } = await uploadImage(formData)
+                    setBookData({ ...bookData, [type]: data.uri })
                 }
                 catch (error) {
                     console.log('error in uploading...\n', error)
@@ -116,7 +112,7 @@ const CreateBookModal = ({ open, setOpen }: { open: boolean, setOpen: any }) => 
         }
     };
     const handleDeleteFile = async (file: { fileName: string, disabled: true, _id: string, __v: number }) => {
-        const { data } = await deleteFile(file._id)
+        await deleteFile(file._id)
         setBookData({ ...bookData, files: bookData.files.filter(f => f._id != file._id) })
     }
     const handleViewFile = (file: { fileName: string, disabled: true, _id: string, __v: number }) => {
@@ -151,8 +147,6 @@ const CreateBookModal = ({ open, setOpen }: { open: boolean, setOpen: any }) => 
     return (
         <Modal open={open} onClose={() => setOpen(false)} className='w-full flex justify-center items-center' >
             <div className='bg-white flex flex-col gap-[1.5rem] md:w-[70vw] sm:w-[80vw] w-[95vw] max-h-[80vh] overflow-y-scroll rounded-lg md:p-8 sm:p-6 p-4  ' >
-
-                <DeleteBookModal open={openDeleteModal} setOpen={setOpenDeleteModal} bookId={selectedBook._id} />
 
                 <div className="flex flex-col gap-[1rem] ">
                     {/* topbar */}

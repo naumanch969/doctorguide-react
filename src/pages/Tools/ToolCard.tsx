@@ -1,15 +1,10 @@
- 
+
 
 import { Tool } from '../../interfaces';
 
-import {Link} from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
-import {useDispatch} from 'react-redux'
- 
-export default function ToolCard({ tool }: { tool: Tool }) {
+import { Link } from 'react-router-dom';
 
-    const dispatch = useDispatch()
-  const navigate = useNavigate()
+export default function ToolCard({ tool }: { tool: Tool }) {
 
     return (
         <div className="bg-lighter-blue lg:w-[32%] sm:w-[48%] w-full  h-[20rem] flex flex-col justify-between items-start p-[1rem] rounded-[1rem]  ">

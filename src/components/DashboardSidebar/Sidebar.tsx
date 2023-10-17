@@ -1,5 +1,3 @@
- 
-
 import { Link } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
 import { BsSearch } from 'react-icons/bs'
@@ -7,15 +5,13 @@ import { FaCircleUser } from 'react-icons/fa6'
 import { HiHome } from 'react-icons/hi'
 import SideLinks from './SideLinks'
 import { IoLogOut } from 'react-icons/io5'
-import { PiCaretLeftBold, PiHamburger } from 'react-icons/pi'
-import { categoriesResponse, toolsResponse } from '../../constants'
+import { PiCaretLeftBold } from 'react-icons/pi'
 import { useNavigate } from 'react-router-dom'
 import { Menu } from '@mui/icons-material'
 import { getBookCategory, getAllToolCategories } from '../../redux/action/category'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
-import { Category } from '../../interfaces'
-import Loader from '../../utils/components/Loader'
+import { Category, User } from '../../interfaces'
 import { searchBook } from '../../redux/action/book'
 import { logout } from '../../redux/action/auth'
 import { IconButton } from '@mui/material'
@@ -25,35 +21,17 @@ const Sidebar = ({ setShowSidebar }: any) => {
   ////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { currentBookCategory, isFetching: booksCategoriesFetching }: { currentBookCategory: Category, isFetching: boolean } = useSelector((state: RootState) => state.category)
-  const { toolCategories, isFetching: toolsCategoriesFetching }: { toolCategories: Category[], isFetching: boolean } = useSelector((state: RootState) => state.category)
-  const { loggedUser: user }: { loggedUser:User } = useSelector((state: RootState) => state.user)
-  const toolLinks = [];
-  const map = new Map();
-  for (const obj of toolsResponse.results) {
-    if (!map.has(obj.category)) {
-      map.set(obj.category, true);
-      toolLinks.push({
-        category: obj.category,
-        subcategories: [obj.subcategory]
-      });
-    } else {
-      for (const res of toolLinks) {
-        if (res.category === obj.category) {
-          if (!res.subcategories.includes(obj.subcategory)) {
-            res.subcategories.push(obj.subcategory);
-          }
-        }
-      }
-    }
-  }
+  const { currentBookCategory }: { currentBookCategory: Category } = useSelector((state: RootState) => state.category)
+  const { toolCategories }: { toolCategories: Category[] } = useSelector((state: RootState) => state.category)
+  const { loggedUser: user }: { loggedUser: User | null } = useSelector((state: RootState) => state.user)
+  
 
   ////////////////////////////////////////////// STATES //////////////////////////////////////////////////
   const [searchValue, setSearchValue] = useState<string>('')
 
   ////////////////////////////////////////////// USE EFFECTS //////////////////////////////////////////////////
   useEffect(() => {
-    dispatch<any>(getBookCategory(user.category._id))
+    dispatch<any>(getBookCategory((user?.category as Category)?._id));
     dispatch<any>(getAllToolCategories())
   }, [])
   useEffect(() => {
@@ -78,7 +56,7 @@ const Sidebar = ({ setShowSidebar }: any) => {
           <div className="flex flex-col w-full">
 
             <div className="flex flex-col items-start mb-3 mt-6 ">
-            <Link to='/dashboard' className='bg-main-blue text-white flex justify-end items-center  w-[5rem] h-[46px] rounded-r-full ' >
+              <Link to='/dashboard' className='bg-main-blue text-white flex justify-end items-center  w-[5rem] h-[46px] rounded-r-full ' >
                 <PiCaretLeftBold style={{ fontSize: '28px' }} className='relative right-[1rem]' onClick={() => setShowSidebar(false)} />
               </Link>
               {/* logo */}
@@ -107,26 +85,26 @@ const Sidebar = ({ setShowSidebar }: any) => {
                 </div>
               </div>
               {/* Links */}
+              <SideLinks
+                title={currentBookCategory?.name || ""}
+                categoryId={currentBookCategory?._id}
+                subcategories={currentBookCategory?.bookSubcategories || []}
+                active={false}
+              />
+              {
+                toolCategories.map((category: Category, index: number) => (
+                  <React.Fragment key={index} >
                     <SideLinks
-                      title={currentBookCategory?.name || ""}
-                      categoryId={currentBookCategory?._id}
-                      subcategories={currentBookCategory?.bookSubcategories || []}
+                      title={category?.name || ""}
+                      // subTools={category.toolSubcategories?.map(((subcategory: { name: string, id: string }) => subcategory.name))}
+                      categoryId={category._id}
+                      subTools={category.toolSubcategories}
                       active={false}
                     />
-                    {
-                      toolCategories.map((category: Category, index: number) => (
-                        <React.Fragment key={index} >
-                          <SideLinks
-                            title={category?.name || ""}
-                            // subTools={category.toolSubcategories?.map(((subcategory: { name: string, id: string }) => subcategory.name))}
-                            categoryId={category._id}
-                            subTools={category.toolSubcategories}
-                            active={false}
-                          />
-                        </React.Fragment>
-                      ))
-                    }
-          
+                  </React.Fragment>
+                ))
+              }
+
 
 
             </div>
@@ -186,27 +164,26 @@ const Sidebar = ({ setShowSidebar }: any) => {
             </div>
             {/* Links */}
             {
-                <>
-                  <SideLinks
-                    title={currentBookCategory?.name || ""}
-                    categoryId={currentBookCategory?._id}
-                    subcategories={currentBookCategory?.bookSubcategories || []}
-                    active={false}
-                  />
-                  {
-                    toolCategories.map((category: Category, index: number) => (
-                      <React.Fragment key={index} >
-                        <SideLinks
-                          onClick={() => setShowSidebar(false)}
-                          title={category?.name || ""}
-                          categoryId={category._id}
-                          subTools={category.toolSubcategories}
-                          active={false}
-                        />
-                      </React.Fragment>
-                    ))
-                  }
-                </>
+              <>
+                <SideLinks
+                  title={currentBookCategory?.name || ""}
+                  categoryId={currentBookCategory?._id}
+                  subcategories={currentBookCategory?.bookSubcategories || []}
+                  active={false}
+                />
+                {
+                  toolCategories.map((category: Category, index: number) => (
+                    <React.Fragment key={index} >
+                      <SideLinks
+                        title={category?.name || ""}
+                        categoryId={category._id}
+                        subTools={category.toolSubcategories}
+                        active={false}
+                      />
+                    </React.Fragment>
+                  ))
+                }
+              </>
             }
           </div>
 

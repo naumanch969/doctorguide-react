@@ -1,8 +1,8 @@
  
 
-import { Image, Image as ImageIcon, Person } from '@mui/icons-material'
+import { Image, Person } from '@mui/icons-material'
 
-import React, { useEffect, useState } from 'react'
+import   { useEffect, useState } from 'react'
 import EditAccount from './EditAccount'
 import DeleteAccount from './DeleteAccount'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,7 +10,7 @@ import { getUser as getUserProfile } from '../../redux/action/user'
 import { RootState } from '../../redux/store'
 import { User } from '../../interfaces'
 import Loader from '../../utils/components/Loader'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const page = () => {
 
@@ -54,10 +54,10 @@ const page = () => {
                                 <div className="flex justify-start items-center gap-[2rem] ">
                                     <div className="w-40 h-40 rounded-full relative  ">
                                         {
-                                            user.imageUrl
+                                            user?.imageUrl
                                                 ?
                                                 <img
-                                                    src={user.imageUrl}
+                                                    src={user?.imageUrl}
                                                     alt='User'
                                                     className='rounded-full'
                                                 />
@@ -66,8 +66,8 @@ const page = () => {
                                         }
                                     </div>
                                     <div className="flex flex-col justify-center">
-                                        <h2 className='text-[2rem] font-bold ' >{user.name || 'User'}</h2>
-                                        <span className='text-[18px] text-black ' >{user.email || 'user@gmail.com'}</span>
+                                        <h2 className='text-[2rem] font-bold ' >{user?.name || 'User'}</h2>
+                                        <span className='text-[18px] text-black ' >{user?.email || 'user@gmail.com'}</span>
                                     </div>
                                 </div>
 
@@ -78,11 +78,11 @@ const page = () => {
                                 <div className="flex flex-wrap gap-[2rem] w-full ">
                                     <div className='flex flex-col gap-[4px] lg:w-[28rem] w-full' >
                                         <span className='text-black font-medium ' >Name</span>
-                                        <input disabled value={user.name} type="text" placeholder='Your Fullname' className='border-[1px] border-light-gray h-[40px] w-full px-[1.2rem] rounded-[4px] ' />
+                                        <input disabled value={user?.name} type="text" placeholder='Your Fullname' className='border-[1px] border-light-gray h-[40px] w-full px-[1.2rem] rounded-[4px] ' />
                                     </div>
                                     <div className='flex flex-col gap-[4px] lg:w-[28rem] w-full' >
                                         <span className='text-black font-medium ' >Email</span>
-                                        <input disabled value={user.email} type="text" placeholder='email@example.com' className='border-[1px] border-light-gray h-[40px] w-full px-[1.2rem] rounded-[4px] ' />
+                                        <input disabled value={user?.email} type="text" placeholder='email@example.com' className='border-[1px] border-light-gray h-[40px] w-full px-[1.2rem] rounded-[4px] ' />
                                     </div>
                                     <div className='flex flex-col gap-[4px] lg:w-[28rem] w-full' >
                                         <span className='text-black font-medium ' >Password</span>

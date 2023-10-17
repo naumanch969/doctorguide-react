@@ -5,14 +5,12 @@ import { getAllToolCategories } from '../../../redux/action/category'
 import { getAllToolSubcategories, getToolSubcategories } from '../../../redux/action/subcategory'
 import { uploadImage } from '../../../redux/api'
 import { RootState } from '../../../redux/store'
-import { Add, Delete, DeleteOutlined, Edit } from '@mui/icons-material'
+import { DeleteOutlined } from '@mui/icons-material'
 import { Modal, Switch } from '@mui/material'
 
 import React, { useEffect, useRef, useState } from 'react'
-import { BsSearch } from 'react-icons/bs'
 import { useDispatch, useSelector } from 'react-redux'
-import { createTool, updateTool } from '../../../redux/action/tool'
-import DeleteBookModal from '../../../components/admin/Modals/DeleteBookModal'
+import { updateTool } from '../../../redux/action/tool'
 
 const UpdateToolModal = ({ open, setOpen, tool }: { open: boolean, setOpen: any, tool: Tool }) => {
 
@@ -20,7 +18,6 @@ const UpdateToolModal = ({ open, setOpen, tool }: { open: boolean, setOpen: any,
     const dispatch = useDispatch()
     const mobileImageRef = useRef<HTMLInputElement>(null)
     const webImageRef = useRef<HTMLInputElement>(null)
-    const { tools }: { tools: Tool[] } = useSelector((state: RootState) => state.tool)
     const { toolCategories }: { toolCategories: Category[] } = useSelector((state: RootState) => state.category)
     const { toolSubcategories }: { toolSubcategories: Subcategory[] } = useSelector((state: RootState) => state.subcategory)
     const initialState: Tool = {
@@ -57,7 +54,7 @@ const UpdateToolModal = ({ open, setOpen, tool }: { open: boolean, setOpen: any,
 
     //////////////////////////////////////////// FUNCTIONS ///////////////////////////////////////////////
     const handleSubmit = () => {
-        const { name, category, subcategory, webImage, mobileImage, inputFields, systemRole, prompt, languageDropdown } = toolData
+        const { name, category, subcategory, webImage, mobileImage, inputFields, systemRole, prompt } = toolData
         if (
             !name ||
             !category ||

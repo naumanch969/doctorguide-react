@@ -1,5 +1,4 @@
-;
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { baseURL } from "../../constants";
 
 export default function GoogleSignIn({ className }: { className?: string }) {

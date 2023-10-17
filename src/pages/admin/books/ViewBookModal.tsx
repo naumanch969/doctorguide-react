@@ -7,7 +7,7 @@ import { RootState } from "../../../redux/store"
 import Loader from "../../../utils/components/Loader"
 import { Modal } from "@mui/material"
 
-import { useState, useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 const ViewBookModal = ({ open, setOpen, book }: { open: boolean, setOpen: any, book: Book }) => {

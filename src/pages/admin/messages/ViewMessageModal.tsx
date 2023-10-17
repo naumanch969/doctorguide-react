@@ -3,7 +3,6 @@
 import { Send } from "@mui/icons-material"
 import { Modal } from "@mui/material"
 import { useState, useEffect } from "react"
-import { BsStack } from "react-icons/bs"
 import ComposeReplyModal from "./ComposeReplyModal"
 import { Message } from "../../../interfaces"
 

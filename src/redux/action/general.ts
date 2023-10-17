@@ -2,7 +2,7 @@ import * as api from '../api'
 import { start, end, error, uploadImageReducer, stripeWebhookReducer } from '../reducer/general'
 import { AsyncAction } from '../store'
 
-export const uploadImage = (image: FormData): AsyncAction => async (dispatch, getState) => {
+export const uploadImage = (image: FormData): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.uploadImage(image)
@@ -13,7 +13,7 @@ export const uploadImage = (image: FormData): AsyncAction => async (dispatch, ge
     }
 }
 
-export const stripeWebhook = (): AsyncAction => async (dispatch, getState) => {
+export const stripeWebhook = (): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.stripeWebhook()

@@ -9,7 +9,7 @@ import { getAllBookCategories } from "../../../redux/action/category";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../redux/store";
 import { Category } from "../../../interfaces";
-import { getUser, setUserCategory } from "../../../redux/api";
+import { setUserCategory } from "../../../redux/api";
 // import { routeHandler } from "../../../utils/routeHandler";
 // import { getUserReducer, setUserCategoryReducer } from "../../../redux/reducer/user";
 import SnackbarComponent from "../../../utils/components/Snackbar";

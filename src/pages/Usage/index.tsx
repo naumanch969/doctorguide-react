@@ -1,9 +1,10 @@
- 
+
 
 import { Rocket } from '@mui/icons-material'
-import React from 'react'
 import { useDispatch } from 'react-redux'
-// import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line, } from 'recharts'
+import { useEffect } from 'react'
+import { getUser } from '../../redux/action/user'
+import { LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line} from 'recharts'
 
 const Usage = () => {
 
@@ -56,6 +57,9 @@ const Usage = () => {
     ////////////////////////////////////////////////// STATES /////////////////////////////////////////////////
 
     ////////////////////////////////////////////////// USE EFFECTS /////////////////////////////////////////////////
+    useEffect(() => {
+        dispatch<any>(getUser())
+    }, [])
 
     ////////////////////////////////////////////////// FUNCTIONS /////////////////////////////////////////////////
 
@@ -78,9 +82,7 @@ const Usage = () => {
 
                 <div className="graph">
 
-                    The Stats Graph
-
-                    {/* <LineChart
+                    <LineChart
                         width={730}
                         height={250}
                         data={data}
@@ -94,7 +96,7 @@ const Usage = () => {
                         <Line type="monotone" dataKey="pv" stroke="#8884d8" />
                         <Line type="monotone" dataKey="uv" stroke="#82ca9d" />
                     </LineChart>
- */}
+
 
                 </div>
 

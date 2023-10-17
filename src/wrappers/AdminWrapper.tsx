@@ -2,19 +2,13 @@
 
 import { AdminSidebar as Sidebar } from "../components";
 import { Menu } from "@mui/icons-material";
-;
 import { useEffect, useState } from "react";
-import { PiCaretLeftBold } from "react-icons/pi";
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { RootState } from "../redux/store";
 import { IconButton } from "@mui/material";
 
 
 const AdminWrapper = ({ children }: any) => {
 
     ///////////////////////////////////////////////// VARIABLES /////////////////////////////////////////////////
-    const navigate = useNavigate()
 
     ///////////////////////////////////////////////// STATES /////////////////////////////////////////////////
     const [showSidebar, setShowSidebar] = useState<boolean>(true)

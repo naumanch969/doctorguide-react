@@ -1,12 +1,11 @@
- 
+
 
 import { Plan } from '../../../interfaces'
 import { RootState } from '../../../redux/store'
-import { Add, CheckCircle, Create, Delete, DeleteOutlined, Edit, MoreVert } from '@mui/icons-material'
-import { IconButton, Menu, MenuItem } from '@mui/material'
+import { Add, CheckCircle, Delete, Edit, } from '@mui/icons-material'
+import { IconButton } from '@mui/material'
 
-import React, { useEffect, useState } from 'react'
-import { BsEye } from 'react-icons/bs'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import CreatePlanModal from './CreatePlanModal'
 import UpdatePlanModal from './UpdatePlanModal'
@@ -18,8 +17,6 @@ import { getPlans } from '../../../redux/action/plan'
 const Plans = () => {
     //////////////////////////////////////////// VARIABLES ///////////////////////////////////////////////
     const dispatch = useDispatch()
-    const plansPerPage = 20;
-    const page = 1;
     const { plans, isFetching }: { plans: Plan[], isFetching: boolean } = useSelector((state: RootState) => state.plan)
     const initialState: Plan = {
         _id: '',
@@ -33,8 +30,6 @@ const Plans = () => {
 
     //////////////////////////////////////////// STATES ///////////////////////////////////////////////
     const [selectedPlan, setSelectedPlan] = useState<Plan>(initialState)
-    const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-    const [openMenu, setOpenMenu] = useState<boolean>(false)
     const [openCreateModal, setOpenCreateModal] = useState<boolean>(false)
     const [openUpdateModal, setOpenUpdateModal] = useState<boolean>(false)
     const [openDeleteModal, setOpenDeleteModal] = useState<boolean>(false)
@@ -51,7 +46,6 @@ const Plans = () => {
     //////////////////////////////////////////// COMPONENTS ///////////////////////////////////////////////
     const Board = ({ plan }: { plan: Plan }) => {
 
-        const isFree = plan.name == 'FREE'
         const isBasic = plan.name == 'BASIC'
         const isPro = plan.name == 'PRO'
 

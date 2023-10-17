@@ -6,7 +6,7 @@ import { checkoutSubscription } from '../../redux/api'
 // import { checkoutSubscription } from '../../redux/action/plan'
 import { RootState } from '../../redux/store'
 import { CheckCircle, Person } from '@mui/icons-material'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import { FaCrown } from 'react-icons/fa6'
 import { useDispatch, useSelector } from 'react-redux'
@@ -18,7 +18,7 @@ const page = () => {
     //////////////////////////////////////////////// VARIABLES ////////////////////////////////////////////////////
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const { plans, isFetching }: { plans: Plan[], isFetching: boolean } = useSelector((state: RootState) => state.plan)
+    const { plans }: { plans: Plan[] } = useSelector((state: RootState) => state.plan)
     console.log('plans', plans)
 
     //////////////////////////////////////////////// STATES ////////////////////////////////////////////////////
@@ -44,7 +44,6 @@ const page = () => {
 
     const Board = ({ plan }: { plan: Plan }) => {
 
-        const isFree = plan.name == 'FREE'
         const isBasic = plan.name == 'BASIC'
         const isPro = plan.name == 'PRO'
 

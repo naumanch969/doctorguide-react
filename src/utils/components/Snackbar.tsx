@@ -1,16 +1,14 @@
  
 
-import React, { useState } from 'react'
+import React from 'react'
 import { Snackbar, IconButton, Button } from '@mui/material';
 import { Close } from '@mui/icons-material';
 
 export default function SnackbarComponent({ open, setOpen, note }: { open: boolean, setOpen: any, note: string }) {
 
-    const handleClick = () => {
-        setOpen(true);
-    };
+   
+    const handleClose = (_event: React.SyntheticEvent | Event, reason?: string) => {
 
-    const handleClose = (event: React.SyntheticEvent | Event, reason?: string) => {
         if (reason === 'clickaway') {
             return;
         }

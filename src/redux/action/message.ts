@@ -11,7 +11,7 @@ import {
 } from '../reducer/message'
 import { AsyncAction } from '../store'
 
-export const sendMessage = (message: string): AsyncAction => async (dispatch, getState) => {
+export const sendMessage = (message: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.sendMessage(message)
@@ -21,7 +21,7 @@ export const sendMessage = (message: string): AsyncAction => async (dispatch, ge
         dispatch(error(err.message))
     }
 }
-export const getMessages = (): AsyncAction => async (dispatch, getState) => {
+export const getMessages = (): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getMessages()
@@ -31,7 +31,7 @@ export const getMessages = (): AsyncAction => async (dispatch, getState) => {
         dispatch(error(err.message))
     }
 }
-export const getMessage = (messageId: string): AsyncAction => async (dispatch, getState) => {
+export const getMessage = (messageId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getMessage(messageId)
@@ -41,7 +41,7 @@ export const getMessage = (messageId: string): AsyncAction => async (dispatch, g
         dispatch(error(err.message))
     }
 }
-export const replyMessage = (messageId: string, reply: { subject: string, reply: string, html: string, sendTo: string, emailUsername: string, }): AsyncAction => async (dispatch, getState) => {
+export const replyMessage = (messageId: string, reply: { subject: string, reply: string, html: string, sendTo: string, emailUsername: string, }): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.replyMessage(messageId, reply)
@@ -51,7 +51,7 @@ export const replyMessage = (messageId: string, reply: { subject: string, reply:
         dispatch(error(err.message))
     }
 }
-export const sendBulkEmails = (mailData: { subject: string, message: string, html: string, emailUsername: string, emails: string[] }): AsyncAction => async (dispatch, getState) => {
+export const sendBulkEmails = (mailData: { subject: string, message: string, html: string, emailUsername: string, emails: string[] }): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.sendBulkEmails(mailData)
@@ -61,7 +61,7 @@ export const sendBulkEmails = (mailData: { subject: string, message: string, htm
         dispatch(error(err.message))
     }
 }
-export const sendEmailsToEveryone = (mailData: { subject: string, message: string, html: string, emailUsername: string }): AsyncAction => async (dispatch, getState) => {
+export const sendEmailsToEveryone = (mailData: { subject: string, message: string, html: string, emailUsername: string }): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.sendEmailsToEveryone(mailData)
@@ -73,7 +73,7 @@ export const sendEmailsToEveryone = (mailData: { subject: string, message: strin
 }
 export const sendEmailsToSubscribers = (mailData: {
     subject: string, message: string, html: string, emailUsername: string, billing: string, planName: string
-}): AsyncAction => async (dispatch, getState) => {
+}): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.sendEmailsToSubscribers(mailData)

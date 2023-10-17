@@ -1,9 +1,9 @@
  
 
-import { Message, Plan } from "../../../interfaces"
-import { createPlan, updatePlan } from "../../../redux/action/plan"
+import {  Plan } from "../../../interfaces"
+import {  updatePlan } from "../../../redux/action/plan"
 import { RootState } from "../../../redux/store"
-import { Clear, Send } from "@mui/icons-material"
+import { Clear } from "@mui/icons-material"
 import { Modal } from "@mui/material"
 import { useState, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
@@ -38,6 +38,7 @@ const UpdatePlanModal = ({ open, setOpen, plan }: { open: boolean, setOpen: any,
         const { features, name, billing, price, priceId, messagesPerMonth } = planData
         if (!features || !name || !billing || !price || !priceId || !messagesPerMonth) return alert('Make sure to provide all the fields')
         dispatch<any>(updatePlan(plan._id, planData))
+    setPlanData(initialState)
         setOpen(false)
     }
     const hanldeFilterFeature = (featureToFilter: string) => {

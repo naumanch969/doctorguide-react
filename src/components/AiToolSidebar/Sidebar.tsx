@@ -1,9 +1,9 @@
  
 
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { PiCaretLeftBold } from 'react-icons/pi'
 import { Mail, } from '@mui/icons-material'
-import { useParams, useNavigate, Link } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { queryTool } from '../../redux/action/tool'
 import { useDispatch, useSelector } from 'react-redux'
 import { Tool } from '../../interfaces'

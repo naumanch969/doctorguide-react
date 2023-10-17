@@ -4,10 +4,10 @@ import { start, end, error, loginReducer, requestResetPasswordReducer, resendOTP
 import { AsyncAction } from '../store'
 import { useNavigate } from 'react-router-dom';
 
-export const register = (userData: { name: string, email: string, password: string }, navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch, getState) => {
+export const register = (userData: { name: string, email: string, password: string }, navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
-        const { data } = await api.register(userData)
+        await api.register(userData)
         navigate("/auth/verify");
         // dispatch(registerReducer(data))
         dispatch(end())
@@ -15,7 +15,7 @@ export const register = (userData: { name: string, email: string, password: stri
         dispatch(error(err.message))
     }
 }
-export const login = (userData: { email: string, password: string }, navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch, getState) => {
+export const login = (userData: { email: string, password: string }, navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         await api.login(userData)
@@ -31,7 +31,7 @@ export const login = (userData: { email: string, password: string }, navigate: R
         dispatch(error(err?.response?.data?.message))
     }
 }
-export const requestResetPassword = (datad: any): AsyncAction => async (dispatch, getState) => {
+export const requestResetPassword = (datad: any): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.requestResetPassword(datad)
@@ -41,7 +41,7 @@ export const requestResetPassword = (datad: any): AsyncAction => async (dispatch
         dispatch(error(err.message))
     }
 }
-export const resendOTP = (): AsyncAction => async (dispatch, getState) => {
+export const resendOTP = (): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.resendOTP()
@@ -51,7 +51,7 @@ export const resendOTP = (): AsyncAction => async (dispatch, getState) => {
         dispatch(error(err.message))
     }
 }
-export const verifyOTP = (otp: string, navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch, getState) => {
+export const verifyOTP = (otp: string, navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.verifyOTP(otp)
@@ -62,7 +62,7 @@ export const verifyOTP = (otp: string, navigate: ReturnType<typeof useNavigate>)
         dispatch(error(err.message))
     }
 }
-export const validateToken = (datad: any): AsyncAction => async (dispatch, getState) => {
+export const validateToken = (datad: any): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.validateToken(datad)
@@ -72,7 +72,7 @@ export const validateToken = (datad: any): AsyncAction => async (dispatch, getSt
         dispatch(error(err.message))
     }
 }
-export const resetPassword = (datad: any): AsyncAction => async (dispatch, getState) => {
+export const resetPassword = (datad: any): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.resetPassword(datad)
@@ -82,7 +82,7 @@ export const resetPassword = (datad: any): AsyncAction => async (dispatch, getSt
         dispatch(error(err.message))
     }
 }
-export const googleAuth = (datad: any): AsyncAction => async (dispatch, getState) => {
+export const googleAuth = (datad: any): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.googleAuth(datad)
@@ -92,7 +92,7 @@ export const googleAuth = (datad: any): AsyncAction => async (dispatch, getState
         dispatch(error(err.message))
     }
 }
-export const googleAuthCallback = (datad: any): AsyncAction => async (dispatch, getState) => {
+export const googleAuthCallback = (datad: any): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.googleAuthCallback(datad)
@@ -102,7 +102,7 @@ export const googleAuthCallback = (datad: any): AsyncAction => async (dispatch, 
         dispatch(error(err.message))
     }
 }
-export const logout = (navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch, getState) => {
+export const logout = (navigate: ReturnType<typeof useNavigate>): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.logout()

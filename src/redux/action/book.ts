@@ -15,7 +15,7 @@ import {
 } from '../reducer/book'
 import { AsyncAction } from '../store'
 
-export const getBooks = (query: string): AsyncAction => async (dispatch, getState) => {
+export const getBooks = (query: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.getBooks(query)
@@ -25,7 +25,7 @@ export const getBooks = (query: string): AsyncAction => async (dispatch, getStat
         dispatch(error(err.message))
     }
 }
-export const searchBook = (searchValue: string): AsyncAction => async (dispatch, getState) => {
+export const searchBook = (searchValue: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.searchBook(searchValue)
@@ -35,7 +35,7 @@ export const searchBook = (searchValue: string): AsyncAction => async (dispatch,
         dispatch(error(err.message))
     }
 }
-export const createBook = (bookData: Omit<Book, 'files'> & { files: string[] }): AsyncAction => async (dispatch, getState) => {
+export const createBook = (bookData: Omit<Book, 'files'> & { files: string[] }): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.createBook(bookData)
@@ -52,7 +52,7 @@ interface CustomBook {
     webImage: string,
     mobileImage: string,
 }
-export const updateBook = (bookId: string, bookData: CustomBook): AsyncAction => async (dispatch, getState) => {
+export const updateBook = (bookId: string, bookData: CustomBook): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.updateBook(bookId, bookData)
@@ -62,10 +62,10 @@ export const updateBook = (bookId: string, bookData: CustomBook): AsyncAction =>
         dispatch(error(err.message))
     }
 }
-export const deleteBook = (bookId: string): AsyncAction => async (dispatch, getState) => {
+export const deleteBook = (bookId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
-        const { data } = await api.deleteBook(bookId)
+        await api.deleteBook(bookId)
         dispatch(deleteBookReducer(bookId))
         dispatch(end())
     } catch (err: any) {
@@ -74,7 +74,7 @@ export const deleteBook = (bookId: string): AsyncAction => async (dispatch, getS
 }
 
 
-export const uploadFile = (file: FormData): AsyncAction => async (dispatch, getState) => {
+export const uploadFile = (file: FormData): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.uploadFile(file)
@@ -84,7 +84,7 @@ export const uploadFile = (file: FormData): AsyncAction => async (dispatch, getS
         dispatch(error(err.message))
     }
 }
-export const enableFile = (fileId: string): AsyncAction => async (dispatch, getState) => {
+export const enableFile = (fileId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.enableFile(fileId)
@@ -94,7 +94,7 @@ export const enableFile = (fileId: string): AsyncAction => async (dispatch, getS
         dispatch(error(err.message))
     }
 }
-export const disableFile = (fileId: string): AsyncAction => async (dispatch, getState) => {
+export const disableFile = (fileId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.disableFile(fileId)
@@ -104,7 +104,7 @@ export const disableFile = (fileId: string): AsyncAction => async (dispatch, get
         dispatch(error(err.message))
     }
 }
-export const deleteFileFromBook = (bookId: string, fileId: string): AsyncAction => async (dispatch, getState) => {
+export const deleteFileFromBook = (bookId: string, fileId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.deleteFileFromBook(bookId, fileId)
@@ -114,7 +114,7 @@ export const deleteFileFromBook = (bookId: string, fileId: string): AsyncAction 
         dispatch(error(err.message))
     }
 }
-export const deleteFile = (fileId: string): AsyncAction => async (dispatch, getState) => {
+export const deleteFile = (fileId: string): AsyncAction => async (dispatch) => {
     try {
         dispatch(start())
         const { data } = await api.deleteFile(fileId)

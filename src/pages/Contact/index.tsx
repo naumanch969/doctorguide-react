@@ -2,8 +2,7 @@
 
 import { sendMessage } from '../../redux/action/message'
 import { RootState } from '../../redux/store'
-import ProfileWrapper from '../../wrappers/ProfileWrapper'
-import { Grid3x3, Person, QuestionMark, Send } from '@mui/icons-material'
+import { QuestionMark, Send } from '@mui/icons-material'
 
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
