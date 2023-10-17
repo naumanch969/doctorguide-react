@@ -1,0 +1,5 @@
+export { default as AdminWrapper } from './AdminWrapper'
+export { default as AiToolWrapper } from './AiToolWrapper'
+export { default as DashboardWrapper } from './DashboardWrapper'
+export { default as ProfileWrapper } from './ProfileWrapper'
+export { default as ChatbotWrapper } from './ChatbotWrapper'

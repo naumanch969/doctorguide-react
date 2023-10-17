@@ -1,0 +1,5 @@
+export { default as logo } from './logo.svg'
+export { default as googleIcon } from './google-icon.svg'
+export { default as loader } from './loader.svg'
+export { default as logoMini } from './logo-mini.png'
+export { default as person1 } from './person1.jpeg'
