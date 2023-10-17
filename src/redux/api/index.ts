@@ -7,9 +7,10 @@ axios.defaults.withCredentials = true;
 const API = axios.create({ baseURL })
 
 API.interceptors.request.use((req) => {
-
+    const cookieValue = 's%3A7nl2j4Vf6OEvjcGdVi8p8bxytQsgNloy.70DgKTpUElRixd%2FGfQKTvbnbdyj%2Bsd0RbBgbUpIrzV0';
+    req.headers['Cookie'] = `connect.sid=${cookieValue}`;
     return req;
-})
+});
 
 // AUTH
 export const register = (userData: { name: string, email: string, password: string }) => API.post(`/auth/register`, userData)

@@ -18,7 +18,8 @@ const Books = () => {
   /////////////////////////////////////////// VARIABLES ///////////////////////////////////////////////
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const { currentCategory }: { currentCategory: Category } = useSelector((state: RootState) => state.category)
+  const { currentBookCategory }: { currentBookCategory: Category } = useSelector((state: RootState) => state.category)
+  console.log('currentCategory',currentBookCategory)
   const { loggedUser: user }: { loggedUser: User } = useSelector((state: RootState) => state.user)
   const { books }: { books: Book[] } = useSelector((state: RootState) => state.book)
 
@@ -57,11 +58,11 @@ const Books = () => {
 
       <div className="flex flex-col gap-[1.5rem] md:px-[3rem] md:py-[1.5rem] p-4 bg-white ">
         <Topbar
-          title={currentCategory?.name}
+          title={currentBookCategory?.name}
           subTitle={''}
         />
 
-        <div className="flex justify-between flex-wrap gap-4 ">
+        <div className="flex justify-start flex-wrap gap-4 ">
           {
             books.map((book, index) => (
               <BookCard book={book} key={index} />

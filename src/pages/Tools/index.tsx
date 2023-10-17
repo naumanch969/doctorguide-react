@@ -18,7 +18,7 @@ const Tools = () => {
 
   ////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////
   const dispatch = useDispatch()
-  const { currentCategory }: { currentCategory: Category } = useSelector((state: RootState) => state.category)
+  const { currentToolCategory }: { currentToolCategory: Category } = useSelector((state: RootState) => state.category)
   const { currentSubcategory }: { currentSubcategory: Subcategory } = useSelector((state: RootState) => state.subcategory)
   const { tools, isFetching }: { tools: Tool[], isFetching: boolean } = useSelector((state: RootState) => state.tool)
 
@@ -44,7 +44,7 @@ const Tools = () => {
 
       <div className="flex flex-col gap-[1.5rem] px-[3rem] py-[1.5rem] bg-white ">
         <Topbar
-          title={currentCategory.name}
+          title={currentToolCategory.name}
           subTitle={currentSubcategory.name}
         />
 

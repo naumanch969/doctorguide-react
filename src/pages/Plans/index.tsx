@@ -3,19 +3,22 @@
 import { Plan } from '../../interfaces'
 import { getPlans } from '../../redux/action/plan'
 import { checkoutSubscription } from '../../redux/api'
+// import { checkoutSubscription } from '../../redux/action/plan'
 import { RootState } from '../../redux/store'
-import { ArrowRightAlt, Check, CheckCircle, Person } from '@mui/icons-material'
-import { IconButton } from '@mui/material'
-import { Link } from 'react-router-dom'
-import React, { useEffect } from 'react'
+import { CheckCircle, Person } from '@mui/icons-material'
+import { Link, useNavigate } from 'react-router-dom'
+import { useEffect } from 'react'
 import { FaCrown } from 'react-icons/fa6'
 import { useDispatch, useSelector } from 'react-redux'
+import { baseURL } from '../../constants'
+import { checkoutSubscriptionReducer } from '../../redux/reducer/plan'
 
 const page = () => {
 
     //////////////////////////////////////////////// VARIABLES ////////////////////////////////////////////////////
     const dispatch = useDispatch()
-    const { plans }: { plans: Plan[] } = useSelector((state: RootState) => state.plan)
+    const navigate = useNavigate()
+    const { plans, isFetching }: { plans: Plan[], isFetching: boolean } = useSelector((state: RootState) => state.plan)
     console.log('plans', plans)
 
     //////////////////////////////////////////////// STATES ////////////////////////////////////////////////////
@@ -27,12 +30,14 @@ const page = () => {
 
     //////////////////////////////////////////////// FUNCTION ////////////////////////////////////////////////////
     const handleCheckout = async (plan: Plan) => {
+        // dispatch<any>(checkoutSubscription({ planName: plan.name, billing: plan.billing }, navigate))
         try {
             const { data } = await checkoutSubscription({ planName: plan.name, billing: plan.billing })
-            console.log('sessionId', data)
+            navigate(`${baseURL}/subscription/portal`, { replace: true })
+            dispatch(checkoutSubscriptionReducer(data.sessionId))
         }
         catch (err) {
-            console.log('err in subscription ', err)
+            console.log('error in checkout subscriptioon', err)
         }
     }
 
@@ -127,10 +132,11 @@ const page = () => {
                         </div>
                     </div>
                     <div className="flex lg:w-fit w-full ">
-                        <Link
-                            to={'/profile/plans'}
+                        <button 
+                            // to={'/profile/plans'}
+                            onClick={()=> navigate(`${baseURL}/subscription/portal`) }
                             className='bg-black text-white px-[2rem] py-[12px] rounded-full shadow-lg '
-                        >Upgrade Plan</Link>
+                        >Upgrade Plan</button>
                     </div>
                 </div>
 

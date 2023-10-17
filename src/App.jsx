@@ -4,18 +4,19 @@ import { Books, Tools, ToolUsage, Dashboard, ProfileDetails, Contact, Plans, Usa
 import { ProfileWrapper, AdminWrapper, AiToolWrapper, DashboardWrapper, ChatbotWrapper } from './wrappers'
 import { getUser } from "./redux/action/user";
 import { useDispatch, useSelector } from "react-redux";
+import Cookie from 'js-cookie'
 
 
 const App = () => {
 
   ///////////////////////////////////// VARIABLES ////////////////////////////////////////
   const dispatch = useDispatch()
-
+  
   ///////////////////////////////////// STATES ////////////////////////////////////////
 
   ///////////////////////////////////// USE EFFECTS ////////////////////////////////////////
   useEffect(() => {
-    dispatch(getUser())
+  dispatch(getUser())
   }, [])
 
 

@@ -6,6 +6,7 @@ interface PlansState {
     error: null | Error;
     plans: Plan[];
     currentPlan: Plan;
+    sessionId: string
 }
 
 const initialState: PlansState = {
@@ -20,7 +21,8 @@ const initialState: PlansState = {
         messagesPerMonth: 0,
         priceId: '',
         features: []
-    }
+    },
+    sessionId: ''
 };
 
 
@@ -46,8 +48,11 @@ const plansSlice = createSlice({
         },
         deletePlanReducer: (state, action: PayloadAction<string>) => {
             state.plans = state.plans.filter((plan: Plan) => plan._id != action.payload);
-        }
-        ,
+        },
+
+        checkoutSubscriptionReducer: (state, action: PayloadAction<string>) => {
+            state.sessionId = action.payload
+        },
 
     }
 })
@@ -59,5 +64,6 @@ export const {
     getPlansReducer,
     getPlanReducer,
     deletePlanReducer,
+    checkoutSubscriptionReducer
 } = plansSlice.actions
 export default plansSlice.reducer

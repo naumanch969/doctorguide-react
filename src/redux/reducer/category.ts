@@ -16,6 +16,8 @@ const initialState: CategoriesState = {
     bookCategories: [],
     toolCategories: [],
     currentCategory: { name: '', _id: '', subcategories: [] },
+    currentToolCategory: { name: '', _id: '', subcategories: [] },
+    currentBookCategory: { name: '', _id: '', subcategories: [] },
 };
 
 const categorysSlice = createSlice({
@@ -34,10 +36,11 @@ const categorysSlice = createSlice({
             state.error = action.payload;
         },
         getAllBookCategoriesReducer: (state, action: PayloadAction<Category[]>) => {
+            state.currentCategory = action.payload;
             state.bookCategories = action.payload;
         },
         getBookCategoryReducer: (state, action: PayloadAction<Category>) => {
-            state.currentCategory = action.payload;
+            state.currentBookCategory = action.payload;
         },
         createBookCategoryReducer: (state, action: PayloadAction<Category>) => {
             state.bookCategories = [...state.bookCategories, action.payload];
@@ -53,6 +56,7 @@ const categorysSlice = createSlice({
         },
         getToolCategoryReducer: (state, action: PayloadAction<Category>) => {
             state.currentCategory = action.payload;
+            state.currentToolCategory = action.payload;
         },
         createToolCategoryReducer: (state, action: PayloadAction<Category>) => {
             state.toolCategories = [...state.toolCategories, action.payload]

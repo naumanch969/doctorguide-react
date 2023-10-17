@@ -31,7 +31,53 @@ const page = ({ showRightbar, setShowRightbar }: { showRightbar: boolean, setSho
     }, [])
 
     ////////////////////////////////////////////////// FUNCTIONS //////////////////////////////////////////////////
-    const handleQuery = async (query: string) => {
+    // const handleQuery = async (query:string) => {
+    //     const data = JSON.stringify({
+    //       query: query,
+    //       conversationId: initialMessage.conversationId
+    //     });
+      
+    //     const headers = new Headers({
+    //       'Content-Type': 'application/json',
+    //     });
+      
+    //     const request = new Request('http://localhost:8080/books/query', {
+    //       method: 'POST',
+    //       headers: headers,
+    //       body: data,
+    //       credentials: 'include',  
+    //     });
+      
+    //     try {
+    //       const response = await fetch(request);
+      
+    //       if (response.headers.get('content-type') === 'text/plain') {
+    //         const reader = response?.body?.getReader();
+    //         let result = '';
+    //         while (true) {
+    //           const { done, value } = await reader?.read();
+    //           console.log('done', done, 'value', value);
+    //           if (done) {
+    //             break;
+    //           }
+    //           result += new TextDecoder().decode(value);
+    //         }
+    //         console.log('result', result);
+    //         const json = JSON.parse(result);
+    //         console.log('json', json);
+    //         if (json.questions) {
+    //           console.log('Final response:', json);
+    //         }
+    //       } else {
+    //         console.error('Invalid Content-Type in response');
+    //       }
+    //     } catch (error) {
+    //       console.error('Error:', error);
+    //     }
+    // };
+      
+
+      const handleQuery = async (query: string) => {
         dispatch<any>(queryBook({ conversationId: initialMessage.conversationId, query }, setSources))
         setMessage('')
     };

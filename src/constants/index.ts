@@ -1,5 +1,5 @@
-// export const baseURL = 'http://ec2-18-141-0-210.ap-southeast-1.compute.amazonaws.com:8000'
-export const baseURL = 'http://localhost:8080'
+export const baseURL = 'http://ec2-18-141-0-210.ap-southeast-1.compute.amazonaws.com:8000'
+// export const baseURL = 'http://localhost:8080'
 export const toolsResponse = {
     results: [
         {

@@ -16,7 +16,7 @@ const Books = () => {
 
   ////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////
   const { categoryId, subcategoryId } = useParams()
-  const { currentCategory }: { currentCategory: Category } = useSelector((state: RootState) => state.category)
+  const { currentBookCategory }: { currentBookCategory: Category } = useSelector((state: RootState) => state.category)
   const { currentSubcategory }: { currentSubcategory: Subcategory } = useSelector((state: RootState) => state.subcategory)
   const dispatch = useDispatch()
 
@@ -41,11 +41,11 @@ const Books = () => {
 
       <div className="flex flex-col gap-[1.5rem] px-[3rem] py-[1.5rem] bg-white ">
         <Topbar
-          title={currentCategory.name}
+          title={currentBookCategory.name}
           subTitle={currentSubcategory.name}
         />
 
-        <div className="grid gap-[1.3rem]">
+        <div className="flex justify-start gap-[1.3rem]">
           {
             isFetching
               ?

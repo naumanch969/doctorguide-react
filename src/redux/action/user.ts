@@ -45,4 +45,4 @@ export const updateUser = (userData: { name: string, imageUrl: string, oldPasswo
     } catch (err: any) {
         dispatch(error(err.message))
     }
-} 
+}

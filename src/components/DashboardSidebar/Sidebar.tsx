@@ -11,7 +11,7 @@ import { PiCaretLeftBold, PiHamburger } from 'react-icons/pi'
 import { categoriesResponse, toolsResponse } from '../../constants'
 import { useNavigate } from 'react-router-dom'
 import { Menu } from '@mui/icons-material'
-import { getAllBookCategories, getAllToolCategories } from '../../redux/action/category'
+import { getBookCategory, getAllToolCategories } from '../../redux/action/category'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from '../../redux/store'
 import { Category } from '../../interfaces'
@@ -25,8 +25,9 @@ const Sidebar = ({ setShowSidebar }: any) => {
   ////////////////////////////////////////////// VARIABLES //////////////////////////////////////////////////
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const { bookCategories, isFetching: booksCategoriesFetching }: { bookCategories: Category[], isFetching: boolean } = useSelector((state: RootState) => state.category)
+  const { currentBookCategory, isFetching: booksCategoriesFetching }: { currentBookCategory: Category, isFetching: boolean } = useSelector((state: RootState) => state.category)
   const { toolCategories, isFetching: toolsCategoriesFetching }: { toolCategories: Category[], isFetching: boolean } = useSelector((state: RootState) => state.category)
+  const { loggedUser: user }: { loggedUser:User } = useSelector((state: RootState) => state.user)
   const toolLinks = [];
   const map = new Map();
   for (const obj of toolsResponse.results) {
@@ -52,7 +53,7 @@ const Sidebar = ({ setShowSidebar }: any) => {
 
   ////////////////////////////////////////////// USE EFFECTS //////////////////////////////////////////////////
   useEffect(() => {
-    dispatch<any>(getAllBookCategories())
+    dispatch<any>(getBookCategory(user.category._id))
     dispatch<any>(getAllToolCategories())
   }, [])
   useEffect(() => {
@@ -93,7 +94,7 @@ const Sidebar = ({ setShowSidebar }: any) => {
             {/* Searchbar and Links */}
             <div className="flex flex-col">
               {/* Search bar */}
-              <div className="w-full px-4 relative mb-10">
+              <div className="w-full px-4 relative mb-4">
                 <input
                   type="text"
                   value={searchValue}
@@ -107,9 +108,9 @@ const Sidebar = ({ setShowSidebar }: any) => {
               </div>
               {/* Links */}
                     <SideLinks
-                      title={bookCategories[0]?.name || ""}
-                      categoryId={bookCategories[0]?._id}
-                      subcategories={bookCategories?.[0]?.bookSubcategories || []}
+                      title={currentBookCategory?.name || ""}
+                      categoryId={currentBookCategory?._id}
+                      subcategories={currentBookCategory?.bookSubcategories || []}
                       active={false}
                     />
                     {
@@ -187,9 +188,9 @@ const Sidebar = ({ setShowSidebar }: any) => {
             {
                 <>
                   <SideLinks
-                    title={bookCategories[0]?.name || ""}
-                    categoryId={bookCategories[0]?._id}
-                    subcategories={bookCategories?.[0]?.bookSubcategories || []}
+                    title={currentBookCategory?.name || ""}
+                    categoryId={currentBookCategory?._id}
+                    subcategories={currentBookCategory?.bookSubcategories || []}
                     active={false}
                   />
                   {

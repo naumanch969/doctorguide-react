@@ -29,7 +29,6 @@ export const getBookCategory = (categoryId: string): AsyncAction => async (dispa
     try {
         dispatch(start())
         const { data } = await api.getBookCategory(categoryId)
-        console.log('data', data)
         dispatch(getBookCategoryReducer(data))
         dispatch(end())
     } catch (err: any) {
